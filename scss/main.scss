@@ -1,0 +1,263 @@
+$theme-color: #0099cc;
+$framecolors: (color1: rgb(227, 223, 240)rgb(158, 145, 200), color2: rgb(245, 244, 217) rgb(218, 215, 129), color3: rgb(212, 239, 215) rgb(163, 208, 168), color4: rgb(242, 208, 218) rgb(210, 112, 135), color5: rgb(245, 220, 185) rgb(245, 195, 123));
+body {
+	margin: 0;
+	font-family: Helvetica, sans-serif;
+	font-family: "proxima-nova", "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	font-size: 20px;
+}
+
+#app {
+	height: 100%;
+	overflow: hidden;
+}
+
+.main {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.all {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	background-color: #fff;
+	.theme-header {
+		height: 2.5em;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background: $theme-color;
+		color: white;
+		.fa {
+			margin: 0 15px;
+		}
+	}
+	.themes {
+		width: 100vw;
+		overflow: hidden;
+		.sub-theme {
+			width: 115%;
+			position: relative;
+			transition: .6s;
+			margin: .7em auto;
+		}
+		.delet-tip {
+			height: 4em;
+			text-align: center;
+			line-height: 4em;
+			position: absolute;
+			top: 0;
+			right: .4em;
+		}
+		.wrap {
+			width: calc(100vw - 1em);
+			background-color: #fff;
+			border: 1px solid $theme-color;
+			height: 4em;
+			border-radius: 3px;
+			margin: .7em .5em;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			z-index: 3;
+			strong {
+				margin-left: .4em;
+				margin-right: .4em;
+				margin-top: .4em;
+			}
+			.detial {
+				margin-top: .2em;
+				display: flex;
+				justify-content: space-between;
+				font-size: 1em;
+				span,
+				i {
+					margin-left: .4em;
+					margin-right: .4em;
+				}
+			}
+		}
+	}
+}
+
+.todos {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+	background: #fff;
+	transform: translateX(100%);
+	.todo-header {
+		height: 2.5em;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background: $theme-color;
+		color: white;
+		.fa {
+			margin: 0 15px;
+		}
+	}
+	.notes {
+		margin: .5em;
+		font-size: 1.2em;
+		line-height: 1.8em;
+		border: 1px solid #f1f4f9;
+		padding: .5em .5em .1em .5em;
+		.sub-title {
+			width: 100%;
+			font-size: 1.2em;
+			border: none;
+			background-color: transparent;
+			outline: none;
+		}
+		.note {
+			perspective: 300px;
+			margin-top: .3em;
+			display: flex;
+			align-items: center;
+			.fa {
+				color: gray;
+				width: 1.2em;
+			}
+			input {
+				outline: none;
+				font-size: 1em;
+				border: none;
+				border-bottom: 2px solid gray;
+				background-color: transparent;
+				width: 100%;
+				margin: .2em .4em .2em;
+			}
+		}
+	}
+}
+
+@each $name,
+$color in $framecolors {
+	.fa.#{$name} {
+		color: nth($color, 2);
+	}
+	.all .themes .wrap.#{$name} {
+		background-color: nth($color, 2);
+		border: none;
+		color: #4C555C;
+	}
+	.notes.#{$name} {
+		background-color: nth($color, 1);
+	}
+}
+
+ul,
+li {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+
+.tools {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	transition: .6s;
+	transform-origin: center right;
+	transform: scale(1);
+	color: $theme-color;
+	div {
+		margin: auto .5em;
+		display: flex;
+	}
+}
+.color-render {
+	transition: 5s;
+	transform-origin: center center;
+	animation-duration: 1s;
+	animation-name: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	ul {
+		display: none;
+		justify-content: flex-end;
+		flex: 1;
+		li {
+			flex-basis: 17%;
+			text-align: center;
+			display: inline-block;
+		}
+	}
+}
+
+.expansion {
+	.creatnote {
+		display: none;
+	}
+	.save {
+		display: none;
+	}
+	& .color-render {
+		animation-name: fadeInRight;
+		animation-timing-function: ease;
+		width: 100%;
+		display: flex;
+		ul {
+			display: flex;
+		}
+	}
+}
+
+.threedot {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.home {
+	animation: home .6s ease-out forwards;
+}
+.back {  //返回是动画有bug舍弃
+	animation: home .6s ease-out forwards;
+	animation-direction:reverse;
+}
+@keyframes home {
+	0% {
+		transform: translateX(0);
+	}
+	90% {
+		transform: translateX(-110%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+.slide {
+	transform: translateX(-15%);
+}
+
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+		transform: translate3d(50%, 0, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
