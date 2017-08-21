@@ -15,7 +15,8 @@ body {
 #app {
   height: 100%;
   overflow-y: visible;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent; }
 
 .main {
   width: 100%;
@@ -104,7 +105,7 @@ body {
         border-radius: .2em; }
 
 .waitBeDel {
-  box-shadow: inset  0 0 2em gold !important; }
+  box-shadow: inset 0 0 2em gold !important; }
 
 #mask {
   position: fixed;

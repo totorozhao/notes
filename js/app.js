@@ -172,7 +172,7 @@
         obj.todos = [];
         _$subTitle = this.$notes.getElementsByClassName('sub-title')[0]; //HTMLCollection类型实时检测变化
         _$noteItem = this.$content.getElementsByClassName('note');
-        obj.title = _$subTitle.value;
+        obj.title = _$subTitle.value;        
         obj.color = this.$notes.className.replace("notes", "").replace(/\s/g, "");
         for (let $item of _$noteItem) {
           let ele = {};
@@ -191,7 +191,6 @@
           obj.date = d.toLocaleString();
           this.notes.push(obj);
           this.selectedTheme = this.notes.length - 1;
-
         }
         localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(this.notes));
       },
