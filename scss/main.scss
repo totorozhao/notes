@@ -18,7 +18,8 @@ body {
 
 #app {
 	height: 100%;
-	overflow: hidden;
+	overflow-y: visible;
+	overflow-x: hidden;
 }
 
 .main {
@@ -44,17 +45,34 @@ body {
 		align-items: center;
 		background: $theme-color;
 		color: white;
-		.fa {
-			margin: 0 15px;
+		padding: 0 1.2em;
+		box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);		
+	}
+	#toolBar {
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 2.5em;
+		display: none;
+		justify-content: space-between;
+		align-items: center;
+		background-color: #F4F4F4;
+		box-shadow: 1px 1px 6px #a2a2a2;
+		.close,
+		.bin {
+			line-height: 2.5em;
+		}
+		img {
+			display: inline-block;
+			margin: 0 .6em;
 		}
 	}
 	.themes {
 		width: 100vw;
 		overflow: hidden;
 		.sub-theme {
-			width: 115%;
 			position: relative;
-			transition: .6s;
 			margin: .7em auto;
 		}
 		.delet-tip {
@@ -66,35 +84,82 @@ body {
 			right: .4em;
 		}
 		.wrap {
-			width: calc(100vw - 1em);
 			background-color: #fff;
-			border: 1px solid $theme-color;
+			//border: 1px solid $theme-color;
 			height: 4em;
 			border-radius: 3px;
 			margin: .7em .5em;
+			padding-left: .5em;
 			display: flex;
 			flex-direction: column;
-			justify-content: space-between;
+			justify-content: space-around;
 			z-index: 3;
-			strong {
-				margin-left: .4em;
-				margin-right: .4em;
-				margin-top: .4em;
+			box-shadow:  0 0 2em #D1D4D9;
+			.title {
+				padding-top: .2em;
+				flex-basis: 50%;
+				width: 100%;
+				font-weight: bolder;
 			}
-			.detial {
-				margin-top: .2em;
-				display: flex;
-				justify-content: space-between;
-				font-size: 1em;
-				span,
-				i {
-					margin-left: .4em;
-					margin-right: .4em;
-				}
+			.date {
+				flex-basis: 50%;
+				width: 100%;
+			}
+			& .item-delete:after {
+				content: '删除';
+				color: #000;
+				position: absolute;
+				top: 0;
+				right: -91px;
+				text-align: center;
+				background: #ffcb20;
+				width: 80px;
+				height: 4em;
+				line-height: 4em;
+				border-radius: .2em;
 			}
 		}
 	}
 }
+
+
+.waitBeDel {
+	box-shadow:inset  0 0 2em gold !important;
+}
+#mask {
+	position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;;
+    justify-content: center;
+	align-items: center;
+	.confirmWrap {
+		position: absolute;
+		border-radius: 2px;
+		width: 75%;
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 8px 15px;
+		.confirm{
+			display: flex;
+			justify-content: flex-end;
+			color: $theme-color;
+			font-size: 16px;
+			#true {
+				margin-left: 2em;
+			}
+		}
+	}
+}
+
+
+
 
 .todos {
 	position: absolute;
@@ -110,6 +175,7 @@ body {
 		align-items: center;
 		background: $theme-color;
 		color: white;
+		box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);	
 		.fa {
 			margin: 0 15px;
 		}
@@ -119,7 +185,7 @@ body {
 		font-size: 1.2em;
 		line-height: 1.8em;
 		border: 1px solid #f1f4f9;
-		padding: .5em .5em .1em .5em;
+		padding: .5em .5em .1em .5em;		
 		.sub-title {
 			width: 100%;
 			font-size: 1.2em;
@@ -155,12 +221,13 @@ $color in $framecolors {
 		color: nth($color, 2);
 	}
 	.all .themes .wrap.#{$name} {
-		background-color: nth($color, 2);
+		background-color: nth($color, 1);
 		border: none;
 		color: #4C555C;
 	}
 	.notes.#{$name} {
 		background-color: nth($color, 1);
+		box-shadow:inset  0 0 2em  nth($color, 2), 0 0 2em #D1D4D9;;
 	}
 }
 
@@ -179,11 +246,13 @@ li {
 	transform-origin: center right;
 	transform: scale(1);
 	color: $theme-color;
+	margin: 10px;
 	div {
 		margin: auto .5em;
 		display: flex;
 	}
 }
+
 .color-render {
 	transition: 5s;
 	transform-origin: center center;
@@ -231,10 +300,22 @@ li {
 .home {
 	animation: home .6s ease-out forwards;
 }
-.back {  //返回是动画有bug舍弃
+
+.back {
+	//返回是动画有bug舍弃
 	animation: home .6s ease-out forwards;
-	animation-direction:reverse;
+	animation-direction: reverse;
 }
+
+@keyframes opa {
+	form {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 @keyframes home {
 	0% {
 		transform: translateX(0);
@@ -245,10 +326,6 @@ li {
 	100% {
 		transform: translateX(-100%);
 	}
-}
-
-.slide {
-	transform: translateX(-15%);
 }
 
 @keyframes fadeInRight {

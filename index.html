@@ -2,62 +2,72 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Note</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Note</title>
 </head>
 
 <body>
 
-    <div id="app">
-        <div class="main">
-            <div class="all">
-                <div class="theme-header">
-                    <i class="fa fa-plus"></i>
-                    <div>All</div>
-                    <i class="fa fa-bitbucket"></i>
-                </div>
-                <div class="themes">
-                   
-                </div>
-            </div>
+	<div id="app">
+		<div class="main">
+			<div id="mask">
+				<div class="confirmWrap">
+					<p>确定删除?</p>
+					<div class="confirm">
+						<div id="false" data-confirm="false">取消</div>
+						<div id="true" data-confirm="true">确定</div>
+					</div>
+				</div>
+			</div>
+			<div class="all">
+				<div class="theme-header">
+					<div>Notes</div>
+					<i class="fa fa-plus"></i>
+				</div>
+				<div id="toolBar">
+					<div class="close"><img src="../images/close.png"></div>
+					<div class="bin"><img src="../images/bin.png"> </div>
+				</div>
+				<div class="themes">
 
-            <div class="todos">
-                <div class="todo-header">
-                    <i class="fa fa-reply-all"></i>                    
-                    <div class="title">Notes</div>
-                    <i class="fa fa-pencil-square-o"></i>
-                </div>
-                <div class="notes">
-                    <input class="sub-title threedot" placeholder="请填写便签主题">
-                    <div id="nodesList" class="content">
-                    </div>                   
-                    <div class="tools">
-                        <div class="creatnote"><i class="fa fa-plus-circle"></i></div>
-                        <div class="color-render"><i class="fa fa-cube"></i>
-                            <ul class="colorList">
-                                <li class="colorItem"><i class="fa fa-circle color1" data-color='color1'></i></li>
-                                <li class="colorItem"><i class="fa fa-circle color2" data-color='color2'></i></li>
-                                <li class="colorItem"><i class="fa fa-circle color3" data-color='color3'></i></li>
-                                <li class="colorItem"><i class="fa fa-circle color4" data-color='color4'></i></li>
-                                <li class="colorItem"><i class="fa fa-circle color5" data-color='color5'></i></li>
-                            </ul>
-                        </div>
-                        <div class="save">save</div>
-                    </div>
-                </div>
-            </div>
+				</div>
+			</div>
 
-        </div>
+			<div class="todos">
+				<div class="todo-header">
+					<i class="fa fa-pencil-square-o"></i>
+					<div class="title">NOTE</div>
+					<i class="fa fa-reply-all"></i>
+				</div>
+				<div class="notes">
+					<input class="sub-title threedot" placeholder="填写便签主题如:购买计划">
+					<div id="nodesList" class="content">
+					</div>
+					<div class="tools">
+						<div class="creatnote"><i class="fa fa-plus-circle"></i></div>
+						<div class="color-render"><i class="fa fa-cube"></i>
+							<ul class="colorList">
+								<li class="colorItem"><i class="fa fa-circle color1" data-color='color1'></i></li>
+								<li class="colorItem"><i class="fa fa-circle color2" data-color='color2'></i></li>
+								<li class="colorItem"><i class="fa fa-circle color3" data-color='color3'></i></li>
+								<li class="colorItem"><i class="fa fa-circle color4" data-color='color4'></i></li>
+								<li class="colorItem"><i class="fa fa-circle color5" data-color='color5'></i></li>
+							</ul>
+						</div>
+						<div class="save">save</div>
+					</div>
+				</div>
+			</div>
 
 
 
-    </div>
+		</div>
 
-    <script src="js/app.js"></script>
+		<script src="js/app.js"></script>
 </body>
 
 </html>
