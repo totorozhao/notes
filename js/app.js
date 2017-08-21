@@ -7,7 +7,7 @@
 
       init() {
         this.selectedTheme = null;
-        this.notes = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY)) || [{"title":"食材","color":"color1","date":"2017/7/21 上午10:33:20","todos":[{"item":"egg","done":false},{"item":"tomato","done":true}]}];
+        this.notes = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEY)) || [{"title":"Food","color":"color1","date":"2017/7/21 上午10:33:20","todos":[{"item":"egg","done":false},{"item":"tomato","done":true}]}];
 
         this.$el = document.querySelector('#app');
 
